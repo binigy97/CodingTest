@@ -1,0 +1,56 @@
+http://jungol.co.kr/bbs/board.php?bo_table=pbank&code=143&sca=1080
+## 143 : 반복제어문3 - 형성평가4
+### 문제
+```
+자연수 n을 입력받아 "출력 예"와 같이 출력되는 프로그램을 작성하시오.
+
+주의! '*'과 '*'사이에 공백이 없고 줄사이에도 빈줄이 없다.
+```
+### 입력 예
+```
+3
+```
+### 출력 예
+```
+*****
+ ***
+  *
+ ***
+*****
+```
+
+---
+
+### 풀이
+```java
+import java.util.Scanner;
+
+public class Main {
+ public static void main(String[] args) {    
+     Scanner sc = new Scanner(System.in);
+     int n = sc.nextInt();
+     int tmp = n * 2 - 1;
+     
+     for(int i = 0; i < n; i++) {
+    	 System.out.println(" ".repeat(i) + "*".repeat(tmp) + " ".repeat(i));
+    	 tmp -= 2;
+     }
+     tmp = 3;
+     for(int i = n - 1; i > 0; i--) {
+    	 System.out.println(" ".repeat(i - 1) + "*".repeat(tmp) + " ".repeat(i - 1));
+    	 tmp += 2;
+     }
+     sc.close();
+ }
+}
+```
+소요시간 : 189ms
+
+[정올 552번](https://github.com/binigy97/CodingTest/blob/main/Jungol/loop3/552.md)과 비슷한 결과다. 
+다른 JAVA 사용자의 실행시간을 확인해 본 결과, 2022.01엔 500ms 이상, 최대 969ms도 있었다. 
+~~코드를 어떻게 짰길레 1000ms에 가깝게 나왔을까?~~ 
+2022.02 ~ 2022.05는 대부분 350 ~ 400ms인 것에 비해 위 코드는 190ms정도 나왔다. 이와 비슷하게 245ms 나온 사용자도 있었다. 
+245ms 코드는 정말 궁금하다. 확인해 보지 못 하지만, 아마 위 코드와 비슷할 것이라고 생각한다.  
+
+JAVA는 python과 같이 string에 * 연산자가 정의되어져 있지 않아 매우 불편하다. 
+**repeat 함수**를 이용한다면 python처럼 간결한 코드를 통해 빠른 결과를 볼 수 있다. **(JDK11 이상부터 사용가능)**  
